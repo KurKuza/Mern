@@ -11,17 +11,17 @@ import { checkAuth, handleValidationErrors } from './utils/index.js'
 import { UserController, PostController } from './controllers/index.js'
 
 mongoose
-	.connect('mongodb+srv://admin:wwwwww@cluster0.z99sxnx.mongodb.net/?retryWrites=true&w=majority')
+	.connect('mongodb+srv://admin:wwwwww@cluster0.z99sxnx.mongodb.net/blog?retryWrites=true&w=majority')
 	.then(() => console.log('DB ok'))
 	.catch((err) => { 'DB error', console.log(err) })
 
 const app = express()
 const storage = multer.diskStorage({
-	destination: (_, __, cd) => {
-		cd(null, 'uploads')
+	destination: (_, __, cb) => {
+		cb(null, 'uploads')
 	},
-	filename: (_, file, cd) => {
-		cd(null, file.originalname)
+	filename: (_, file, cb) => {
+		cb(null, file.originalname)
 	},
 })
 
